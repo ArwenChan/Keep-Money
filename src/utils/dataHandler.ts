@@ -2,7 +2,7 @@ import Papa from 'papaparse'
 import { openDB, readAllRecord, readAllRecordWithKey } from './dbHelper'
 
 export interface Bill {
-  id: number
+  id?: number
   type: 0 | 1
   category: string
   amount: number
@@ -51,6 +51,19 @@ async function initData(): Promise<[Bill[], Category[]]> {
       readAllRecord<Category>('category'),
     ])
   })
+}
+
+export function computeSummary(data: Bill[]): [number, number] {
+  let income = 0
+  let outcome = 0
+  data.forEach((bill) => {
+    if (bill.type === 0) {
+      outcome += bill.amount
+    } else {
+      income += bill.amount
+    }
+  })
+  return [income, outcome]
 }
 
 class BaseResource {

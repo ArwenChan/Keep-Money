@@ -4,7 +4,7 @@ import TabelView from './views/TableView'
 
 function App() {
   return (
-    <div className="App">
+    <div className="App" id="app">
       <Suspense fallback={'loading...'}>
         <TabelView />
       </Suspense>

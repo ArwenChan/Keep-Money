@@ -1,0 +1,33 @@
+.item {
+  padding: 5px 15px 5px 3px !important;
+}
+
+.listSubHeader {
+  background-color: #fff !important;
+}
+
+.filter:before {
+  border-bottom: none !important;
+}
+
+.filter:after {
+  border-bottom: none !important;
+}
+
+.render {
+  margin: 0 !important;
+}
+
+.filter {
+  div {
+    padding: 5px 18px 0px 0px !important;
+  }
+}
+
+.filter {
+  :global {
+    .MuiSelect-icon {
+      top: calc(50% - 8px) !important;
+    }
+  }
+}

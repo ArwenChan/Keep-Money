@@ -33,7 +33,7 @@ export async function openDB() {
       ]).then(([billData, categories]) => {
         tx!.oncomplete = () => {
           initData(billData, categories).then(() => {
-            resolve('数据初始成功')
+            resolve('load data successfully')
           })
         }
       })
@@ -49,9 +49,12 @@ export async function initData(data: Array<Bill>, categories: Array<Category>) {
     data.forEach((value) => {
       value.time = Number(value.time)
       value.month = getMonth(value.time)
+      value.type = Number(value.type) as 0 | 1
+      value.amount = Number(value.amount)
       dataScheme.add(value)
     })
     categories.forEach((value) => {
+      value.type = Number(value.type) as 0 | 1
       categoryScheme.add(value)
     })
     tx.oncomplete = () => {

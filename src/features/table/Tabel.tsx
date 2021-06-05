@@ -1,4 +1,4 @@
-import React, { ChangeEvent } from 'react'
+import React, { ChangeEvent, ReactNode } from 'react'
 import clsx from 'clsx'
 import Table from '@material-ui/core/Table'
 import TableBody from '@material-ui/core/TableBody'
@@ -34,8 +34,8 @@ function getComparator<Key extends keyof any>(
   order: Order,
   orderBy: Key
 ): (
-  a: { [key in Key]: number | string },
-  b: { [key in Key]: number | string }
+  a: { [key in Key]?: number | string },
+  b: { [key in Key]?: number | string }
 ) => number {
   return order === 'desc'
     ? (a, b) => descendingComparator(a, b, orderBy)
@@ -74,6 +74,7 @@ interface EnhancedTableHeadProps {
   order: Order
   orderBy: string
   rowCount: number
+  filter: ReactNode
 }
 
 function EnhancedTableHead(props: EnhancedTableHeadProps) {
@@ -84,6 +85,7 @@ function EnhancedTableHead(props: EnhancedTableHeadProps) {
     numSelected,
     rowCount,
     onRequestSort,
+    filter: Filter,
   } = props
   const createSortHandler =
     (property: keyof Bill) => (event: React.MouseEvent<unknown>) => {
@@ -108,13 +110,17 @@ function EnhancedTableHead(props: EnhancedTableHeadProps) {
             padding="default"
             sortDirection={orderBy === headCell.id ? order : false}
           >
-            <TableSortLabel
-              active={orderBy === headCell.id}
-              direction={orderBy === headCell.id ? order : 'asc'}
-              onClick={createSortHandler(headCell.id)}
-            >
-              {headCell.label}
-            </TableSortLabel>
+            {headCell.isNumber ? (
+              <TableSortLabel
+                active={orderBy === headCell.id}
+                direction={orderBy === headCell.id ? order : 'asc'}
+                onClick={createSortHandler(headCell.id)}
+              >
+                {headCell.label}
+              </TableSortLabel>
+            ) : (
+              Filter
+            )}
           </TableCell>
         ))}
       </TableRow>
@@ -171,13 +177,20 @@ const EnhancedTableToolbar = (props: EnhancedTableToolbarProps) => {
 
 interface EnhancedTableProps {
   data: Array<Bill>
-  categories: any
+  categoriesMapping: any
   deleteData: (bills: Array<number>) => void
   changeMonth: (event: ChangeEvent) => void
+  filter: ReactNode
 }
 
-export default function EnhancedTable(props: EnhancedTableProps) {
-  const { data: rows, categories, deleteData, changeMonth } = props
+function EnhancedTable(props: EnhancedTableProps) {
+  const {
+    data: rows,
+    categoriesMapping,
+    deleteData,
+    changeMonth,
+    filter,
+  } = props
   const [order, setOrder] = React.useState<Order>('asc')
   const [orderBy, setOrderBy] = React.useState<keyof Bill>('time')
   const [selected, setSelected] = React.useState<number[]>([])
@@ -186,14 +199,16 @@ export default function EnhancedTable(props: EnhancedTableProps) {
     event: React.MouseEvent<unknown>,
     property: keyof Bill
   ) => {
-    const isAsc = orderBy === property && order === 'asc'
-    setOrder(isAsc ? 'desc' : 'asc')
-    setOrderBy(property)
+    if (property !== 'category') {
+      const isAsc = orderBy === property && order === 'asc'
+      setOrder(isAsc ? 'desc' : 'asc')
+      setOrderBy(property)
+    }
   }
 
   const handleSelectAllClick = (event: React.ChangeEvent<HTMLInputElement>) => {
     if (event.target.checked) {
-      const newSelecteds = rows.map((row) => row.id)
+      const newSelecteds = rows.map((row) => row.id!)
       setSelected(newSelecteds)
       return
     }
@@ -248,19 +263,20 @@ export default function EnhancedTable(props: EnhancedTableProps) {
               onSelectAllClick={handleSelectAllClick}
               onRequestSort={handleRequestSort}
               rowCount={rows.length}
+              filter={filter}
             />
             <TableBody>
               {stableSort<Bill>(
                 rows,
                 getComparator<keyof Bill>(order, orderBy)
               ).map((row, index) => {
-                const isItemSelected = isSelected(row.id)
+                const isItemSelected = isSelected(row.id!)
                 const labelId = `enhanced-table-checkbox-${index}`
 
                 return (
                   <TableRow
                     hover
-                    onClick={(event) => handleClick(event, row.id)}
+                    onClick={(event) => handleClick(event, row.id!)}
                     role="checkbox"
                     aria-checked={isItemSelected}
                     tabIndex={-1}
@@ -279,10 +295,17 @@ export default function EnhancedTable(props: EnhancedTableProps) {
                       scope="row"
                       padding="none"
                     >
-                      {categories[row.category]?.name}
+                      {categoriesMapping[row.category]?.name}
                       {row.id}
                     </TableCell>
-                    <TableCell align="right">{row.amount}</TableCell>
+                    <TableCell
+                      align="right"
+                      className={clsx({
+                        [classes.outcomeMoney]: row.type === 0,
+                      })}
+                    >
+                      {row.amount}
+                    </TableCell>
                     <TableCell align="right">
                       {new Date(Number(row.time)).toLocaleDateString()}
                     </TableCell>
@@ -296,3 +319,5 @@ export default function EnhancedTable(props: EnhancedTableProps) {
     </div>
   )
 }
+
+export default React.memo(EnhancedTable)

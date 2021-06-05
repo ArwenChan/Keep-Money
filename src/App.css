@@ -36,3 +36,7 @@
     transform: rotate(360deg);
   }
 }
+
+.MuiPopover-paper {
+  max-height: 300px !important;
+}
