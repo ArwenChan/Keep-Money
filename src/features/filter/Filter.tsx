@@ -33,6 +33,7 @@ function MultipleSelectFilter(props: MultipleSelectFilterProps) {
       <Select
         labelId="mutiple-checkbox-filter-label"
         id="mutiple-checkbox-filter"
+        data-testid="mutiple-checkbox-filter"
         multiple
         value={filters}
         onChange={handleChange}

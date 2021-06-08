@@ -42,7 +42,6 @@ function AddBillDialog(props: AddBillDialogProps) {
       setCategory('')
     }
   }, [open])
-
   return (
     <Dialog open={open} aria-labelledby="form-dialog-title">
       <DialogTitle id="form-dialog-title">添加记账</DialogTitle>

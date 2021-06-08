@@ -3,7 +3,7 @@ import { Bill, Category, getMonth, readCSV } from './dataHandler'
 let db: IDBDatabase
 export async function openDB() {
   return new Promise((resolve, reject) => {
-    const request = indexedDB.open('keep')
+    const request = window.indexedDB.open('keep')
     request.onerror = function (event) {
       console.log('数据库打开报错')
       reject(event)
@@ -31,10 +31,17 @@ export async function openDB() {
         readCSV<Bill>('/data/bill.csv'),
         readCSV<Category>('/data/categories.csv'),
       ]).then(([billData, categories]) => {
-        tx!.oncomplete = () => {
+        // mocked indexedDB seems a little different
+        if (process.env.NODE_ENV === 'test') {
           initData(billData, categories).then(() => {
             resolve('load data successfully')
           })
+        } else {
+          tx!.oncomplete = () => {
+            initData(billData, categories).then(() => {
+              resolve('load data successfully')
+            })
+          }
         }
       })
     }
@@ -73,6 +80,7 @@ export async function addData<T>(scheme: string, data: Array<T>) {
       tx.objectStore(scheme).add(value)
     })
     tx.oncomplete = () => {
+      console.log('添加成功')
       resolve(null)
     }
     tx.onerror = (event) => {

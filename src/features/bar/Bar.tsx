@@ -13,14 +13,18 @@ function Bar(props: BarProps) {
   const { summary, openDialog, openModal } = props
   return (
     <div className={classes.bar}>
-      <span className={classes.barSummary}>
+      <span className={classes.barSummary} data-testid="bar-string">
         收入：{summary[0]}，
         <span className={classes.red}>支出：{summary[1]}</span>
         <span className={classes.underline} onClick={openModal}>
           更多
         </span>
       </span>
-      <IconButton className={classes.button} onClick={openDialog}>
+      <IconButton
+        className={classes.button}
+        onClick={openDialog}
+        data-testid="add-button"
+      >
         <AddCircleIcon
           style={{ fontSize: 60, color: 'black' }}
           className={classes.icon}

@@ -1,5 +1,7 @@
 import Papa from 'papaparse'
 import { openDB, readAllRecord, readAllRecordWithKey } from './dbHelper'
+const fs = require('fs')
+const path = require('path')
 
 export interface Bill {
   id?: number
@@ -16,18 +18,42 @@ export interface Category {
   type: 0 | 1
 }
 
-export async function readCSV<T>(path: string): Promise<Array<T>> {
+export async function readCSV<T>(filepath: string): Promise<Array<T>> {
   return new Promise((resolve, reject) => {
-    Papa.parse<T>(path, {
-      download: true,
-      header: true,
-      complete: (results) => {
-        resolve(results.data)
-      },
-      error: (err) => {
-        reject(err)
-      },
-    })
+    if (process.env.NODE_ENV === 'test') {
+      const localpath = path.resolve(
+        __dirname,
+        '../../public/mock/',
+        `./${filepath}`
+      )
+      const file = fs.createReadStream(localpath)
+      const csvData: Array<T> = []
+      Papa.parse<T>(file, {
+        header: true,
+        step: function (result) {
+          //@ts-ignore, wrong type check here
+          csvData.push(result.data)
+        },
+        complete: function (results) {
+          resolve(csvData)
+        },
+        error: (err) => {
+          reject(err)
+        },
+      })
+    } else {
+      Papa.parse<T>(filepath, {
+        download: true,
+        header: true,
+        complete: (results) => {
+          // console.log(results.data)
+          resolve(results.data)
+        },
+        error: (err) => {
+          reject(err)
+        },
+      })
+    }
   })
 }
 

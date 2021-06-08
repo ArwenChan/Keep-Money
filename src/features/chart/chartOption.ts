@@ -1,6 +1,6 @@
 export default function getOption(xData: string[], yData: number[]) {
   return {
-    title: { text: '支出情况' },
+    title: { text: '本月支出情况' },
     grid: {
       left: '3%',
       right: '3%',

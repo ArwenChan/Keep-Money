@@ -100,7 +100,7 @@ function EnhancedTableHead(props: EnhancedTableHeadProps) {
             indeterminate={numSelected > 0 && numSelected < rowCount}
             checked={rowCount > 0 && numSelected === rowCount}
             onChange={onSelectAllClick}
-            inputProps={{ 'aria-label': 'select all desserts' }}
+            inputProps={{ 'aria-label': 'select all' }}
           />
         </TableCell>
         {headCells.map((headCell) => (
@@ -169,7 +169,13 @@ const EnhancedTableToolbar = (props: EnhancedTableToolbarProps) => {
           </IconButton>
         </Tooltip>
       ) : (
-        <TextField id="date" type="month" onChange={onChangeMonth} />
+        <TextField
+          id="date"
+          type="month"
+          onChange={onChangeMonth}
+          data-testid="calendar"
+          inputProps={{ role: 'month' }}
+        />
       )}
     </Toolbar>
   )
@@ -277,7 +283,7 @@ function EnhancedTable(props: EnhancedTableProps) {
                   <TableRow
                     hover
                     onClick={(event) => handleClick(event, row.id!)}
-                    role="checkbox"
+                    role="item"
                     aria-checked={isItemSelected}
                     tabIndex={-1}
                     key={row.id}
@@ -296,7 +302,6 @@ function EnhancedTable(props: EnhancedTableProps) {
                       padding="none"
                     >
                       {categoriesMapping[row.category]?.name}
-                      {row.id}
                     </TableCell>
                     <TableCell
                       align="right"

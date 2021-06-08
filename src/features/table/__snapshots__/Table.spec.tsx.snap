@@ -1,0 +1,326 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`test table test table render 1`] = `
+<div>
+  <div
+    class="root"
+  >
+    <div
+      class="MuiPaper-root paper MuiPaper-elevation1 MuiPaper-rounded"
+    >
+      <div
+        class="MuiToolbar-root MuiToolbar-regular toolbarRoot MuiToolbar-gutters"
+      >
+        <div
+          class="MuiTypography-root toolbarTitle MuiTypography-h6"
+          id="tableTitle"
+        >
+          Keep Money
+        </div>
+        <div
+          class="MuiFormControl-root MuiTextField-root"
+          data-testid="calendar"
+        >
+          <div
+            class="MuiInputBase-root MuiInput-root MuiInput-underline MuiInputBase-formControl MuiInput-formControl"
+          >
+            <input
+              aria-invalid="false"
+              class="MuiInputBase-input MuiInput-input"
+              id="date"
+              role="month"
+              type="month"
+              value=""
+            />
+          </div>
+        </div>
+      </div>
+      <div
+        class="MuiTableContainer-root"
+      >
+        <table
+          aria-label="bill"
+          aria-labelledby="tableTitle"
+          class="MuiTable-root table"
+        >
+          <thead
+            class="MuiTableHead-root"
+          >
+            <tr
+              class="MuiTableRow-root MuiTableRow-head"
+            >
+              <th
+                class="MuiTableCell-root MuiTableCell-head MuiTableCell-paddingCheckbox"
+                scope="col"
+              >
+                <span
+                  aria-disabled="false"
+                  class="MuiButtonBase-root MuiIconButton-root PrivateSwitchBase-root-1 MuiCheckbox-root MuiCheckbox-colorSecondary MuiIconButton-colorSecondary"
+                >
+                  <span
+                    class="MuiIconButton-label"
+                  >
+                    <input
+                      aria-label="select all"
+                      class="PrivateSwitchBase-input-4"
+                      data-indeterminate="false"
+                      type="checkbox"
+                      value=""
+                    />
+                    <svg
+                      aria-hidden="true"
+                      class="MuiSvgIcon-root"
+                      focusable="false"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        d="M19 5v14H5V5h14m0-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2z"
+                      />
+                    </svg>
+                  </span>
+                  <span
+                    class="MuiTouchRipple-root"
+                  />
+                </span>
+              </th>
+              <th
+                class="MuiTableCell-root MuiTableCell-head MuiTableCell-alignLeft"
+                scope="col"
+              >
+                <span>
+                  filter
+                </span>
+              </th>
+              <th
+                class="MuiTableCell-root MuiTableCell-head MuiTableCell-alignRight"
+                scope="col"
+              >
+                <span
+                  aria-disabled="false"
+                  class="MuiButtonBase-root MuiTableSortLabel-root"
+                  role="button"
+                  tabindex="0"
+                >
+                  金额
+                  <svg
+                    aria-hidden="true"
+                    class="MuiSvgIcon-root MuiTableSortLabel-icon MuiTableSortLabel-iconDirectionAsc"
+                    focusable="false"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      d="M20 12l-1.41-1.41L13 16.17V4h-2v12.17l-5.58-5.59L4 12l8 8 8-8z"
+                    />
+                  </svg>
+                </span>
+              </th>
+              <th
+                aria-sort="ascending"
+                class="MuiTableCell-root MuiTableCell-head MuiTableCell-alignRight"
+                scope="col"
+              >
+                <span
+                  aria-disabled="false"
+                  class="MuiButtonBase-root MuiTableSortLabel-root MuiTableSortLabel-active"
+                  role="button"
+                  tabindex="0"
+                >
+                  时间
+                  <svg
+                    aria-hidden="true"
+                    class="MuiSvgIcon-root MuiTableSortLabel-icon MuiTableSortLabel-iconDirectionAsc"
+                    focusable="false"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      d="M20 12l-1.41-1.41L13 16.17V4h-2v12.17l-5.58-5.59L4 12l8 8 8-8z"
+                    />
+                  </svg>
+                </span>
+              </th>
+            </tr>
+          </thead>
+          <tbody
+            class="MuiTableBody-root"
+          >
+            <tr
+              aria-checked="false"
+              class="MuiTableRow-root MuiTableRow-hover"
+              role="item"
+              tabindex="-1"
+            >
+              <td
+                class="MuiTableCell-root MuiTableCell-body MuiTableCell-paddingCheckbox"
+              >
+                <span
+                  aria-disabled="false"
+                  class="MuiButtonBase-root MuiIconButton-root PrivateSwitchBase-root-1 MuiCheckbox-root MuiCheckbox-colorSecondary MuiIconButton-colorSecondary"
+                >
+                  <span
+                    class="MuiIconButton-label"
+                  >
+                    <input
+                      aria-labelledby="enhanced-table-checkbox-0"
+                      class="PrivateSwitchBase-input-4"
+                      data-indeterminate="false"
+                      type="checkbox"
+                      value=""
+                    />
+                    <svg
+                      aria-hidden="true"
+                      class="MuiSvgIcon-root"
+                      focusable="false"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        d="M19 5v14H5V5h14m0-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2z"
+                      />
+                    </svg>
+                  </span>
+                  <span
+                    class="MuiTouchRipple-root"
+                  />
+                </span>
+              </td>
+              <th
+                class="MuiTableCell-root MuiTableCell-body MuiTableCell-paddingNone"
+                id="enhanced-table-checkbox-0"
+                role="cell"
+                scope="row"
+              >
+                房贷
+              </th>
+              <td
+                class="MuiTableCell-root MuiTableCell-body outcomeMoney MuiTableCell-alignRight"
+              >
+                5400
+              </td>
+              <td
+                class="MuiTableCell-root MuiTableCell-body MuiTableCell-alignRight"
+              >
+                2019-7-1
+              </td>
+            </tr>
+            <tr
+              aria-checked="false"
+              class="MuiTableRow-root MuiTableRow-hover"
+              role="item"
+              tabindex="-1"
+            >
+              <td
+                class="MuiTableCell-root MuiTableCell-body MuiTableCell-paddingCheckbox"
+              >
+                <span
+                  aria-disabled="false"
+                  class="MuiButtonBase-root MuiIconButton-root PrivateSwitchBase-root-1 MuiCheckbox-root MuiCheckbox-colorSecondary MuiIconButton-colorSecondary"
+                >
+                  <span
+                    class="MuiIconButton-label"
+                  >
+                    <input
+                      aria-labelledby="enhanced-table-checkbox-1"
+                      class="PrivateSwitchBase-input-4"
+                      data-indeterminate="false"
+                      type="checkbox"
+                      value=""
+                    />
+                    <svg
+                      aria-hidden="true"
+                      class="MuiSvgIcon-root"
+                      focusable="false"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        d="M19 5v14H5V5h14m0-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2z"
+                      />
+                    </svg>
+                  </span>
+                  <span
+                    class="MuiTouchRipple-root"
+                  />
+                </span>
+              </td>
+              <th
+                class="MuiTableCell-root MuiTableCell-body MuiTableCell-paddingNone"
+                id="enhanced-table-checkbox-1"
+                role="cell"
+                scope="row"
+              >
+                房屋租赁
+              </th>
+              <td
+                class="MuiTableCell-root MuiTableCell-body outcomeMoney MuiTableCell-alignRight"
+              >
+                1500
+              </td>
+              <td
+                class="MuiTableCell-root MuiTableCell-body MuiTableCell-alignRight"
+              >
+                2021-6-7
+              </td>
+            </tr>
+            <tr
+              aria-checked="false"
+              class="MuiTableRow-root MuiTableRow-hover"
+              role="item"
+              tabindex="-1"
+            >
+              <td
+                class="MuiTableCell-root MuiTableCell-body MuiTableCell-paddingCheckbox"
+              >
+                <span
+                  aria-disabled="false"
+                  class="MuiButtonBase-root MuiIconButton-root PrivateSwitchBase-root-1 MuiCheckbox-root MuiCheckbox-colorSecondary MuiIconButton-colorSecondary"
+                >
+                  <span
+                    class="MuiIconButton-label"
+                  >
+                    <input
+                      aria-labelledby="enhanced-table-checkbox-2"
+                      class="PrivateSwitchBase-input-4"
+                      data-indeterminate="false"
+                      type="checkbox"
+                      value=""
+                    />
+                    <svg
+                      aria-hidden="true"
+                      class="MuiSvgIcon-root"
+                      focusable="false"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        d="M19 5v14H5V5h14m0-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2z"
+                      />
+                    </svg>
+                  </span>
+                  <span
+                    class="MuiTouchRipple-root"
+                  />
+                </span>
+              </td>
+              <th
+                class="MuiTableCell-root MuiTableCell-body MuiTableCell-paddingNone"
+                id="enhanced-table-checkbox-2"
+                role="cell"
+                scope="row"
+              >
+                房屋租赁
+              </th>
+              <td
+                class="MuiTableCell-root MuiTableCell-body outcomeMoney MuiTableCell-alignRight"
+              >
+                1500
+              </td>
+              <td
+                class="MuiTableCell-root MuiTableCell-body MuiTableCell-alignRight"
+              >
+                2021-6-8
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+`;

@@ -6,7 +6,7 @@ import {
   getMonth,
   initResource,
 } from '../utils/dataHandler'
-import Table from '../features/table/Tabel'
+import Table from '../features/table/Table'
 import React, { ChangeEvent, useMemo, useState } from 'react'
 import Bar from '../features/bar/Bar'
 
@@ -56,7 +56,6 @@ export default function TableView() {
 
   function deleteData(bills: Array<number>) {
     deleteDBData('data', bills).then(() => {
-      console.log(`deleted: ${bills}`)
       setData(data.filter((v) => !bills.includes(v.id!)))
     })
   }

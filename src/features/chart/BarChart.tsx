@@ -4,15 +4,14 @@ import { BarChart } from 'echarts/charts'
 import { TitleComponent } from 'echarts/components'
 import { CanvasRenderer } from 'echarts/renderers'
 import { Bill } from '../../utils/dataHandler'
-import React, { useEffect, useRef } from 'react'
+import React, { useContext, useEffect, useRef, useState } from 'react'
 import unzip from 'lodash-es/unzip'
 import classes from './BarChart.module.css'
 import ReactDOM from 'react-dom'
 import getOption from './chartOption'
-import { isConstructorDeclaration } from 'typescript'
+import { AppContext } from '../../App'
 
 echarts.use([GridComponent, BarChart, CanvasRenderer, TitleComponent])
-
 interface BarChartProps {
   data: Bill[]
   categoriesMapping: any
@@ -21,10 +20,10 @@ interface BarChartProps {
 }
 
 function BarChartModal(props: BarChartProps) {
-  let modalRoot: HTMLElement | null
   const { data, categoriesMapping, open, onClose } = props
   const chartEl = useRef(null)
-  const el = document.createElement('div')
+  const appRef = useContext(AppContext)
+  const [el] = useState<HTMLDivElement>(document.createElement('div'))
   let dataCategoried: { [Key in keyof any]: number } = {}
   data
     .filter((d) => d.type === 0)
@@ -50,23 +49,23 @@ function BarChartModal(props: BarChartProps) {
   }
 
   useEffect(() => {
-    modalRoot = document.getElementById('app')
-    if (modalRoot) {
+    if (appRef?.current) {
       if (open) {
-        modalRoot.appendChild(el)
+        appRef.current.appendChild(el)
         paint()
       } else if (el.parentNode) {
-        modalRoot.removeChild(el)
+        console.log('remove el')
+        appRef.current.removeChild(el)
       }
     }
-  }, [open])
+  }, [open, el])
 
   return ReactDOM.createPortal(
-    <div className={classes.mask} onClick={onClose}>
-      <div ref={chartEl} className={classes.board}></div>
+    <div className={classes.mask} onClick={onClose} role="mask">
+      <div ref={chartEl} className={classes.board} role="board"></div>
     </div>,
     el
   )
 }
 
-export default React.memo(BarChartModal)
+export default BarChartModal
